@@ -234,7 +234,7 @@ sleep 2
 		clear
 		$COLOR 4;echo $RED" [>] Which interface do you want to use?: ";$COLOR 9
 		echo
-		WLANS="$(ifconfig | grep wlan | cut -d ' ' -f 1)"
+		WLANS="$(ifconfig | grep wlan | cut -d ' ' -f 1 | cut -d 'm' -f 1 | uniq)"
 		for WLAN in $WLANS
 		do
 			echo " [>] $WLAN"
@@ -293,7 +293,7 @@ sleep 2
 	echo
 	echo $BLU" [*] Changing monitor device MAC addresses. "$GRN
 	echo
-	NICS="$(ifconfig | grep wlan | cut -d ' ' -f 1)"
+	NICS="$(ifconfig | grep wlan | cut -d ' ' -f 1 | cut -d 'm' -f 1 | uniq)"
 	for CARD in $NICS
 	do
 		ifconfig $CARD down
@@ -487,7 +487,7 @@ fbotstart()																#Startup Autobot
 {	
 	killall airodump-ng 2> /dev/null
 	MONS="$(ifconfig | grep mon | cut -d ' ' -f 1)"
-	NICS="$(ifconfig | grep wlan | cut -d ' ' -f 1)"
+	NICS="$(ifconfig | grep wlan | cut -d ' ' -f 1 | cut -d 'm' -f 1 | uniq)"
 	echo $BLU" [*] Changing monitor device MAC addresses. "
 	echo $GRN
 	for CARD in $NICS
