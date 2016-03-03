@@ -248,9 +248,9 @@ sleep 2
 			NIC="wlan"$NIC
 		fi
 		echo
-		echo $GRN;MON1=$(airmon-ng start $NIC | grep wlan | cut -d ' ' -f 1 | head -c -17 | sed 's/^.....//');echo " [*] Started $NIC monitor on $MON1"
+		echo $GRN;MON1=$(airmon-ng start $NIC | grep monitor | sed -ne 's/.* on \[.*\]\(.*\))/\1/p');echo " [*] Started $NIC monitor on $MON1"
 	else
-		echo $GRN;MON1=$(airmon-ng start $NIC 1 | grep wlan | cut -d ' ' -f 1 | head -c -17 | sed 's/^.....//');echo " [*] Started $NIC monitor on $MON1"
+		echo $GRN;MON1=$(airmon-ng start $NIC 1 | grep monitor | sed -ne 's/.* on \[.*\]\(.*\))/\1/p');echo " [*] Started $NIC monitor on $MON1"
 	fi
 	if [ $(ifconfig | grep $MON1) -z ] 2> /dev/null
 	then
@@ -261,7 +261,7 @@ sleep 2
 	then
 		A=1
 	else
-		echo $GRN;MON2=$(airmon-ng start $NIC2 6 | grep wlan | cut -d ' ' -f 1 | head -c -17 | sed 's/^.....//');echo " [*] Started $NIC2 monitor on $MON2"
+		echo $GRN;MON2=$(airmon-ng start $NIC2 6 | grep monitor | sed -ne 's/.* on \[.*\]\(.*\))/\1/p');echo " [*] Started $NIC2 monitor on $MON2"
 		if [ $(ifconfig | grep $MON2) -z ] 2> /dev/null
 		then
 			echo $RED;$COLOR 1;$COLOR2 9;echo " [*] ERROR: $NIC2 card could not be started! "$RST
