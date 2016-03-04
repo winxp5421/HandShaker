@@ -1,3 +1,5 @@
+This version works! however there are some issues macchanger does not work, Interface does not return back to normal (stuck in monitor mode) some random errors that do not affect usage.
+
 HandShaker
 ==========
 - Detect, deauth, capture, crack WPA/2 handshakes and WEP keys.
